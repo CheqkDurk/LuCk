@@ -15,3 +15,4 @@ Notas importantes:
 - Para producción, mover la verificación de credenciales a un servidor seguro (HTTPS),
   emitir tokens (JWT u otros) y validarlos en el servidor antes de permitir acceso a datos privados.
 - Se puede ampliar con backend (Node/Express, Firebase, Supabase, etc.) para persistir usuarios y progreso.
+HOLA JECk
