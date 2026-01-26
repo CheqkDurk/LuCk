@@ -6,9 +6,9 @@ Este es un ejemplo mínimo de una web para un juego con:
 - Página privada (Dashboard) accesible sólo tras autenticación.
 
 Cómo usar:
-1. Abrir `index.html` en un navegador (puede servir como SPA estático).
+1. Abrir `home.php` en un navegador (puede servir como SPA estático).
 2. Login demo: usuario `player`, contraseña `secret`.
-3. Tras el login, la ruta `#/dashboard` mostrará contenido privado.
+3. Tras el login, l'arxiu `index.php` mostrará contenido privado.
 
 Notas importantes:
 - La autenticación está simulada en el cliente (localStorage). No usar así en producción.
