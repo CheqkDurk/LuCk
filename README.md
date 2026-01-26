@@ -24,29 +24,32 @@ Usuario: user      | Contraseña: pass
 
 ## Cómo Jugar
 
-1. **Accede a la página de login:**
+1. **Accede a la página principal:**
+   ```
+   http://localhost:8080/home.php
+   ```
+
+2. **Inicia sesión** con cualquiera de las credenciales de prueba
    ```
    http://localhost:8080/login.php
    ```
 
-2. **Inicia sesión** con cualquiera de las credenciales de prueba
-
-3. **Juega Blackjack:**
-   - Ingresa tu apuesta en el campo "Wager"
+4. **Juega Blackjack:**
+   - Ingresa tu apuesta en el campo "Apuesta"
    - Haz click en "Deal!" para empezar una mano
    - Usa "Hit" para pedir una carta más
    - Usa "Stand" para parar y dejar que el crupier juegue
    - "Double Down" duplica tu apuesta y recibes una carta más
    - "Insurance" te protege si el crupier tiene un As
 
-4. **Objetivo:** Sumar 21 o más que el crupier sin pasarse de 21
+5. **Objetivo:** Sumar 21 o más que el crupier sin pasarse de 21
 
 ## Sistema de Dinero
 
 - **Cash Inicial:** $1,000
 - **Apuesta Mínima:** $1
 - **Ganancias:** Se muestran en tiempo real
-- **Game Over:** Cuando se agota el dinero, se puede recargar otros $1,000
+- **Game Over:** Cuando se agota el dinero, se puede pedir prestamos con un màximo de 20,000 €
 
 ## Requisitos
 
@@ -64,7 +67,7 @@ cd /workspaces/LuCk
 php -S localhost:8080
 ```
 
-Luego accede a: `http://localhost:8080/login.php`
+Luego accede a: `http://localhost:8080/home.php`
 
 ## Características
 
@@ -93,7 +96,7 @@ Puedes modificar los estilos en `styles.css` o la lógica del juego en `blackjac
 ## Limitaciones Conocidas
 
 - La función "Split" aún no está implementada completamente
-- El juego no guarda estadísticas permanentes
+- El juego no guarda estadísticas de dinero permanentes
 - La apuesta no se valida en el servidor (solo en cliente)
 
 ---
