@@ -18,6 +18,7 @@ Modified for LuCk project
 			insured   = 0,
 			deal,
 			totalLoan = 0,
+			totalDebt = 0,
 			maxLoan   = 20000;
 
 /*****************************************************************/
@@ -654,13 +655,27 @@ Modified for LuCk project
 		dealer.updateBoard();
 
 		if(player.getCashRaw() < 1) {
-			// Mostrar modal de préstamo
-			showLoanModal();
+			// Verificar si está completamente arruinado
+			if(checkIfBankrupt()) {
+				setTimeout(function() {
+					showBossKickout();
+				}, 1000);
+			} else {
+				// Mostrar modal de préstamo
+				showLoanModal();
+			}
 		}
 	}
 
 	function showLoanModal(force) {
 		var availableLoan = maxLoan - totalLoan;
+		
+		// Verificar si está completamente arruinado
+		if(availableLoan <= 0 && player.getCashRaw() <= 0) {
+			showBossKickout();
+			return;
+		}
+		
 		$('#maxLoanDisplay').html('$' + availableLoan.formatMoney(2, '.', ','));
 		
 		// Actualizar título del modal según el contexto
@@ -681,7 +696,7 @@ Modified for LuCk project
 		disableLoanOptions(availableLoan);
 		
 		// Mostrar modal
-		$('#myModal').modal({backdrop: false, keyboard: false});
+		$('#myModal').modal('show');
 		
 		// Manejar clic en pedir préstamo
 		$('#newGame').off('click').on('click', function(e) {
@@ -715,6 +730,7 @@ Modified for LuCk project
 		// Aplicar el préstamo
 		player.setCash(loanAmount);
 		totalLoan += loanAmount;
+		totalDebt += Math.ceil(loanAmount * 1.1); // 10% de interés
 		
 		// Cerrar modal
 		$('#myModal').modal('hide');
@@ -737,6 +753,100 @@ Modified for LuCk project
 				$(option.id).parent().css('opacity', '1');
 			}
 		});
+	}
+
+	function checkIfBankrupt() {
+		var cashAvailable = player.getCashRaw();
+		var availableLoan = maxLoan - totalLoan;
+		
+		// Si no tienes dinero y no puedes pedir más préstamos, estás arruinado
+		if(cashAvailable <= 0 && availableLoan <= 0) {
+			return true;
+		}
+		return false;
+	}
+
+	function showBossKickout() {
+		// Deshabilitar todos los botones
+		$('#deal, #hit, #stand, #double, #split, #loan, #repay').prop('disabled', true);
+		running = false;
+		
+		// Mostrar modal del jefe
+		$('#bossModal').modal({
+			backdrop: 'static',
+			keyboard: false
+		});
+	}
+
+	function showRepayModal() {
+		if(totalDebt <= 0) {
+			$('#loanStatusMessage').html('✓ No tienes préstamos pendientes.');
+			$('#repayLoanContent').hide();
+			$('#confirmRepay').hide();
+		} else {
+			$('#loanStatusMessage').html('Tienes un préstamo pendiente que debe ser devuelto con intereses.');
+			$('#repayLoanContent').show();
+			$('#confirmRepay').show();
+			
+			// Actualizar información de deuda
+			$('#totalDebt').html(totalDebt.formatMoney(2, '.', ','));
+			$('#debtBreakdown').html('Préstamo original: $' + totalLoan.formatMoney(2, '.', ',') + ' + 10% interés');
+			
+			// Actualizar monto a pagar
+			updateRepayAmount();
+		}
+		
+		$('#repayModal').modal('show');
+	}
+
+	function updateRepayAmount() {
+		var amount = 0;
+		var selectedOption = $('input[name="repayAmount"]:checked').val();
+		
+		if(selectedOption === 'percent50') {
+			amount = Math.ceil(totalDebt * 0.5);
+		} else if(selectedOption === 'percent100') {
+			amount = totalDebt;
+		} else if(selectedOption === 'custom') {
+			amount = parseInt($('#customRepayAmount').val()) || 0;
+		}
+		
+		$('#repayAmount').html(amount.formatMoney(2, '.', ','));
+		return amount;
+	}
+
+	function processRepayment() {
+		if(totalDebt <= 0) {
+			alert('No tienes deudas que pagar.');
+			return;
+		}
+		
+		var cashAvailable = player.getCashRaw();
+		var amountToRepay = updateRepayAmount();
+		
+		if(amountToRepay <= 0) {
+			alert('Debes ingresar un monto válido.');
+			return;
+		}
+		
+		if(amountToRepay > cashAvailable) {
+			alert('No tienes suficiente dinero para pagar ese monto. Dinero disponible: $' + cashAvailable.formatMoney(2, '.', ','));
+			return;
+		}
+		
+		// Procesar pago
+		player.setCash(-amountToRepay);
+		totalDebt -= amountToRepay;
+		
+		if(totalDebt <= 0) {
+			totalDebt = 0;
+			totalLoan = 0;
+			alert('¡Préstamo pagado completamente! 🎉');
+		} else {
+			alert('Pago realizado. Deuda restante: $' + totalDebt.formatMoney(2, '.', ','));
+		}
+		
+		$('#repayModal').modal('hide');
 	}
 
 /*****************************************************************/
@@ -784,13 +894,37 @@ Modified for LuCk project
 		showLoanModal(true);
 	});
 
+	$('#repay').on('click', function() {
+		showRepayModal();
+	});
+
+	// Event listeners para el modal de devolución
+	$('input[name="repayAmount"]').on('change', function() {
+		updateRepayAmount();
+	});
+
+	$('#customRepayAmount').on('keyup', function() {
+		if($('#repayCustom').is(':checked')) {
+			updateRepayAmount();
+		}
+	});
+
+	$('#confirmRepay').on('click', function(e) {
+		e.preventDefault();
+		processRepayment();
+	});
+
+	$('#exitGame').on('click', function(e) {
+		e.preventDefault();
+		window.location.href = 'home.php';
+	});
+
 /*****************************************************************/
 /*************************** Loading *****************************/
 /*****************************************************************/
 
 	$('#wager').numOnly();
-	$('#actions:not(#wager), #game, #myModal').disableSelection();
-	$('#newGame, #cancel').on('click', function(e) { e.preventDefault(); });
+	$('#actions:not(#wager), #game').disableSelection();
 	$('#cancel').on('click', function(e) { 
 		e.preventDefault();
 		$('#myModal').modal('hide'); 

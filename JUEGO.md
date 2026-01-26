@@ -1,8 +1,8 @@
-# 🎮 LuCk - Blackjack Game
+# LuCk - Blackjack Game
 
 Un juego de Blackjack interactivo desarrollado con PHP, JavaScript, HTML y CSS. Incluye autenticación simple de usuario y lógica completa de juego.
 
-## 📋 Archivos del Proyecto
+## Archivos del Proyecto
 
 ### Archivos PHP
 - **`login.php`** - Página de login con autenticación simple
@@ -14,7 +14,7 @@ Un juego de Blackjack interactivo desarrollado con PHP, JavaScript, HTML y CSS. 
 ### Archivos JavaScript
 - **`blackjack.js`** - Lógica completa del juego de Blackjack
 
-## 🔐 Credenciales de Prueba
+## Credenciales de Prueba
 
 ```
 Usuario: player    | Contraseña: secret
@@ -22,7 +22,7 @@ Usuario: admin     | Contraseña: 1234
 Usuario: user      | Contraseña: pass
 ```
 
-## 🎮 Cómo Jugar
+## Cómo Jugar
 
 1. **Accede a la página de login:**
    ```
@@ -41,14 +41,14 @@ Usuario: user      | Contraseña: pass
 
 4. **Objetivo:** Sumar 21 o más que el crupier sin pasarse de 21
 
-## 💰 Sistema de Dinero
+## Sistema de Dinero
 
 - **Cash Inicial:** $1,000
 - **Apuesta Mínima:** $1
 - **Ganancias:** Se muestran en tiempo real
 - **Game Over:** Cuando se agota el dinero, se puede recargar otros $1,000
 
-## 🔧 Requisitos
+## Requisitos
 
 - PHP 5.4+ (con soporte para server de desarrollo)
 - Navegador moderno con soporte para:
@@ -57,7 +57,7 @@ Usuario: user      | Contraseña: pass
   - jQuery 1.11.3
   - Bootstrap 3.3.7
 
-## 🚀 Inicio del Servidor
+## Inicio del Servidor
 
 ```bash
 cd /workspaces/LuCk
@@ -66,7 +66,7 @@ php -S localhost:8080
 
 Luego accede a: `http://localhost:8080/login.php`
 
-## 📱 Características
+## Características
 
 - ✅ Autenticación de usuario con sesiones PHP
 - ✅ Juego de Blackjack completamente funcional
@@ -78,7 +78,7 @@ Luego accede a: `http://localhost:8080/login.php`
 - ✅ Interfaz responsiva
 - ✅ Soporte para todas las acciones de Blackjack (Hit, Stand, Double, Insurance)
 
-## 📝 Notas Importantes
+## Notas Importantes
 
 - Este es un sistema de estudio/demostración
 - La autenticación es simple y NO es segura para producción
@@ -86,11 +86,11 @@ Luego accede a: `http://localhost:8080/login.php`
 - Las credenciales se guardan en memoria durante la sesión
 - No hay persistencia de datos en base de datos
 
-## 🎨 Personalización
+## Personalización
 
 Puedes modificar los estilos en `styles.css` o la lógica del juego en `blackjack.js`.
 
-## ⚠️ Limitaciones Conocidas
+## Limitaciones Conocidas
 
 - La función "Split" aún no está implementada completamente
 - El juego no guarda estadísticas permanentes
