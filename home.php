@@ -262,7 +262,6 @@ if(isset($_GET['logout'])) {
                     <a href="?logout=1" class="btn btn-secondary">Cerrar Sesión</a>
                 <?php else: ?>
                     <a href="login.php" class="btn btn-primary">Iniciar Sesión</a>
-                    <a href="login.php?register=1" class="btn btn-secondary">Registrarse</a>
                 <?php endif; ?>
             </div>
         </div>
@@ -281,35 +280,55 @@ if(isset($_GET['logout'])) {
             <p>El mejor juego de cartas en línea</p>
         </div>
 
-        <!-- Vista previa del juego -->
-        <div class="game-preview">
-            <?php if(!$is_logged_in): ?>
-                <div class="lock-overlay">
-                    <div class="lock-content">
-                        <div class="lock-icon">🔒</div>
-                        <h3>Acceso Bloqueado</h3>
-                        <p>Inicia sesión para jugar al Blackjack</p>
-                        <a href="login.php">Iniciar Sesión</a>
-                    </div>
-                </div>
-            <?php endif; ?>
-            
-            <div id="game" style="opacity: <?php echo $is_logged_in ? '1' : '0.3'; ?>; pointer-events: <?php echo $is_logged_in ? 'auto' : 'none'; ?>;">
-                <div id="dealer">
-                    <h3>Crupier</h3>
-                    <div id="dhand"></div>
-                </div>
-                <div id="player">
-                    <h3>Tu Mano</h3>
-                    <div id="phand"></div>
-                </div>
-                <div id="money">
-                    <span id="cash">Moni: $<span>0</span></span>
-                    <div id="bank">Billetera: $<span>0</span></div>
-                </div>
+        <!-- Vista previa del juego --><!-- Vista previa del juego -->
+<div class="game-preview">
+    <?php if(!$is_logged_in): ?>
+        <div class="lock-overlay" style="
+            background: linear-gradient(135deg, 
+                rgba(15,23,36,0.95) 0%, 
+                rgba(15,23,36,0.98) 100%
+            );
+            backdrop-filter: blur(5px);
+        ">
+            <div class="lock-content">
+                <div class="lock-icon" style="
+                    font-size: 5rem;
+                    margin-bottom: 25px;
+                    animation: pulse-glow 2s infinite;
+                    text-shadow: 0 0 20px rgba(110,231,183,0.5);
+                ">🔒</div>
+                <h3 style="
+                    color: #6ee7b7;
+                    margin: 0 0 15px 0 !important;
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                ">Acceso Exclusivo</h3>
+                <p style="
+                    color: #9aa7b2;
+                    margin: 0 0 30px 0 !important;
+                    font-size: 1.1rem;
+                    max-width: 400px;
+                    line-height: 1.5;
+                ">Inicia sesión para desbloquear el juego completo de Blackjack con todas sus características</p>
+                <a href="login.php" style="
+                    background: linear-gradient(135deg, #6ee7b7 0%, #4cc9f0 100%);
+                    color: #0f1724;
+                    padding: 15px 40px;
+                    border-radius: 10px;
+                    text-decoration: none !important;
+                    font-weight: bold;
+                    display: inline-block;
+                    font-size: 1.1rem;
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    box-shadow: 0 5px 20px rgba(110,231,183,0.3);
+                ">Iniciar Sesión</a>
             </div>
         </div>
-
+    <?php endif; ?>
+    <!-- ... resto del código ... -->
         <!-- Características -->
         <div class="features">
             <div class="feature-card">

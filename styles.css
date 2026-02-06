@@ -726,3 +726,250 @@ input#wager {
 .modal-backdrop {
 	display: none !important;
 }
+/* ===== MEJORAS VISUALES AÑADIDAS ===== */
+
+/* Efectos hover en cartas mejorados */
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animaciones para cartas nuevas */
+@keyframes cardDeal {
+    0% {
+        opacity: 0;
+        transform: rotateY(90deg) translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateY(0) translateX(0);
+    }
+}
+
+.card-0, .card-1, .card-2, .card-3 {
+    animation: cardDeal 0.5s ease-out;
+}
+
+/* Efecto brillo en botones activos */
+.btn:not(:disabled):hover {
+    box-shadow: 0 0 15px rgba(110, 231, 183, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Indicador de turno */
+.turn-indicator {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(110, 231, 183, 0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #6ee7b7;
+    border: 1px solid rgba(110, 231, 183, 0.3);
+    display: none;
+}
+
+.turn-indicator.active {
+    display: block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Mejoras para el modal de préstamo */
+#myModal .modal-content {
+    background: linear-gradient(135deg, #0f1724 0%, #1a2639 100%);
+    border: 2px solid rgba(110, 231, 183, 0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+#myModal .modal-header {
+    background: linear-gradient(135deg, rgba(110,231,183,0.2) 0%, rgba(110,231,183,0.1) 100%);
+    border-bottom: 2px solid rgba(110,231,183,0.3);
+}
+
+/* Efecto de brillo en el dinero */
+#money {
+    position: relative;
+    overflow: hidden;
+}
+
+#money::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+    );
+    transform: rotate(30deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    100% { transform: translateX(100%) rotate(30deg); }
+}
+
+/* Mejoras para el área de apuestas */
+#wager {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(110,231,183,0.3);
+    transition: all 0.3s;
+}
+
+#wager:focus {
+    border-color: #6ee7b7;
+    box-shadow: 0 0 10px rgba(110,231,183,0.3);
+    background: rgba(255,255,255,0.08);
+}
+
+/* Badge para estadísticas en tiempo real */
+.stats-badge {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(15,23,36,0.9);
+    border: 1px solid rgba(110,231,183,0.3);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #9aa7b2;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.stats-badge div {
+    margin: 3px 0;
+}
+
+.stats-badge .stat-value {
+    color: #6ee7b7;
+    font-weight: bold;
+}
+
+/* Popup de logros */
+.achievement-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, rgba(110,231,183,0.95) 0%, rgba(76,201,240,0.95) 100%);
+    color: #0f1724;
+    padding: 20px 30px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s;
+    text-align: center;
+    border: 3px solid rgba(255,255,255,0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.achievement-popup.show {
+    opacity: 1;
+}
+
+.achievement-popup span {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+/* Indicador visual para préstamos */
+.loan-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,107,107,0.2);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    color: #ff6b6b;
+    border: 1px solid rgba(255,107,107,0.3);
+}
+
+/* Mejoras responsive */
+@media (max-width: 768px) {
+    #wrapper {
+        width: 100% !important;
+    }
+    
+    #game {
+        width: 100% !important;
+        background-size: contain !important;
+        height: auto !important;
+        min-height: 400px;
+    }
+    
+    .card {
+        width: 60px !important;
+        height: 84px !important;
+        margin: 0 3px !important;
+    }
+    
+    #actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: center;
+    }
+    
+    #actions button {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        margin: 2px !important;
+    }
+}
+
+/* Efecto de confeti para victorias grandes */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    top: -10px;
+    opacity: 0;
+    z-index: 9998;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Mejorar las alertas */
+.alert {
+    animation: slideIn 0.3s ease-out;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
