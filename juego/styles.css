@@ -1,0 +1,975 @@
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --accent:#6ee7b7;
+  --muted:#9aa7b2;
+  --glass: rgba(255,255,255,0.03);
+  --radius:10px;
+  --max-width:1200px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  background:linear-gradient(180deg,#071023 0%, #081428 100%);
+  color:#e6eef3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:100vh;
+  gap:20px;
+  padding:20px;
+}
+
+.site-header{
+  width:100%;
+  max-width:var(--max-width);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:12px 16px;
+  background:var(--glass);
+  border-radius:var(--radius);
+  box-shadow:0 4px 20px rgba(2,6,23,0.6);
+}
+
+.logo{margin:0;color:var(--accent)}
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+  margin:0 8px;
+}
+nav a:hover{color:var(--accent)}
+
+.auth-area{display:flex;align-items:center;gap:8px}
+.auth-section{display:flex;align-items:center;gap:12px;margin-left:auto}
+.welcome-msg{color:var(--accent);font-weight:bold;margin-right:8px}
+button{background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit;padding:6px 10px;border-radius:8px;cursor:pointer}
+button:hover{border-color:var(--accent);color:var(--accent)}
+.hidden{display:none}
+
+/* Link styling para logout */
+.auth-section a{text-decoration:none;color:var(--muted)}
+.auth-section a:hover{color:var(--accent)}
+
+main{
+  width:100%;
+  max-width:var(--max-width);
+}
+
+.route{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:18px;
+  margin-top:8px;
+  border-radius:10px;
+}
+
+.card{
+  margin-top:12px;
+  background:rgba(255,255,255,0.02);
+  padding:12px;
+  border-radius:8px;
+}
+
+label{display:block;margin:8px 0}
+input{
+  width:100%;
+  padding:8px;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.04);
+  background:transparent;
+  color:inherit;
+}
+
+.form-actions{display:flex;gap:8px;margin-top:8px}
+.hint{color:var(--muted);font-size:0.9rem}
+.site-footer{max-width:var(--max-width);width:100%;text-align:center;color:var(--muted)}
+
+/* Estilos para Autenticación */
+.site-header{
+  width:100%;
+  max-width:var(--max-width);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:16px;
+  background:var(--card);
+  border-radius:var(--radius);
+  border:1px solid rgba(110,231,183,0.1);
+}
+
+.header-content{
+  width:100%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.logo{
+  margin:0;
+  font-size:24px;
+  color:var(--accent);
+  font-weight:bold;
+}
+
+.auth-section{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+#user-display{
+  color:var(--accent);
+  font-size:14px;
+}
+
+/* Modal de Login */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:rgba(0,0,0,0.7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.modal-content{
+  background:var(--card);
+  padding:32px;
+  border-radius:12px;
+  width:90%;
+  max-width:400px;
+  border:1px solid rgba(110,231,183,0.2);
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+.modal-content h2{
+  margin-top:0;
+  color:var(--accent);
+  text-align:center;
+}
+
+.form-group{
+  margin-bottom:16px;
+}
+
+.form-group label{
+  display:block;
+  margin-bottom:6px;
+  color:var(--accent);
+  font-weight:500;
+  font-size:14px;
+}
+
+.form-group input{
+  width:100%;
+  padding:10px;
+  border:1px solid rgba(110,231,183,0.3);
+  border-radius:6px;
+  background:rgba(255,255,255,0.05);
+  color:inherit;
+  font-size:14px;
+}
+
+.form-group input:focus{
+  outline:none;
+  border-color:var(--accent);
+  background:rgba(255,255,255,0.08);
+}
+
+.error{
+  color:#ff6b6b;
+  font-size:14px;
+  padding:10px;
+  background:rgba(255,107,107,0.1);
+  border-radius:6px;
+  margin-bottom:16px;
+}
+
+.form-actions{
+  display:flex;
+  gap:10px;
+  margin-top:20px;
+}
+
+.form-actions button{
+  flex:1;
+}
+
+.demo-info{
+  font-size:12px;
+  color:var(--muted);
+  text-align:center;
+  margin-top:16px;
+  padding-top:16px;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+
+/* Botones */
+.btn{
+  padding:8px 16px;
+  border-radius:6px;
+  border:1px solid rgba(110,231,183,0.3);
+  background:transparent;
+  color:var(--accent);
+  cursor:pointer;
+  font-size:14px;
+  transition:all 0.2s;
+}
+
+.btn:hover{
+  background:rgba(110,231,183,0.1);
+  border-color:var(--accent);
+}
+
+.btn-primary{
+  background:var(--accent);
+  color:#02121a;
+  border:none;
+}
+
+.btn-primary:hover{
+  background:rgba(110,231,183,0.9);
+}
+
+.btn-secondary{
+  background:transparent;
+  color:var(--accent);
+  border:1px solid var(--accent);
+}
+
+.btn-secondary:hover{
+  background:rgba(110,231,183,0.1);
+}
+
+/* Contenido Protegido */
+#protected-content{
+  width:100%;
+  max-width:var(--max-width);
+}
+
+.breadcrumb{
+  padding:12px 0;
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:24px;
+}
+
+.breadcrumb a{
+  color:var(--accent);
+  text-decoration:none;
+}
+
+.breadcrumb a:hover{
+  text-decoration:underline;
+}
+
+.post-header{
+  margin-bottom:20px;
+}
+
+.entry-title{
+  margin:0;
+  font-size:32px;
+  color:var(--accent);
+}
+
+.entry{
+  background:var(--card);
+  padding:20px;
+  border-radius:var(--radius);
+  border:1px solid rgba(110,231,183,0.1);
+}
+
+.game-container{
+  background:rgba(0,0,0,0.5);
+  padding:20px;
+  border-radius:8px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.desktop-only{
+  display:block;
+}
+
+/* Mensaje para no autenticados */
+.message-container{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:60vh;
+  width:100%;
+}
+
+.message{
+  background:var(--card);
+  padding:40px;
+  border-radius:12px;
+  border:1px solid rgba(110,231,183,0.2);
+  text-align:center;
+  max-width:400px;
+}
+
+.message h2{
+  color:var(--accent);
+  margin-top:0;
+}
+
+.message p{
+  color:var(--muted);
+  margin-bottom:20px;
+}
+
+.hidden{
+  display:none !important;
+}
+
+/* ===== BLACKJACK GAME STYLES ===== */
+div[id*="pcard"] .popover { left: -95px !important; }
+div[id*="dcard"] .popover { left: -105px !important; }
+
+#wrapper {
+	margin: 0 auto;
+	width: 1000px;
+}
+
+h3 {
+	margin: 5px 0;
+	text-align: center;
+}
+
+#game {
+	background: transparent url('https://i.imgur.com/iZrhFim.png') 0 0 no-repeat;
+	border-radius: 5px;
+	color: #333;
+	font: 14px/17px Helvetica, Arial, Verdana, sans-serif;
+	height: 550px;
+	margin: 0 auto;
+	position: relative;
+	width: 1000px;
+}
+
+div#dscore {
+	position: absolute;
+	bottom: 30px;
+}
+
+div#pscore {
+	position: absolute;
+	bottom: 15px;
+}
+
+div#phand, div#dhand {
+	font-weight: 700;
+	position: absolute;
+	top: -122px;
+	white-space: nowrap;
+	width: 1000px;
+}
+
+div[class*="card"] {
+	background: #FFF;
+	border: 6px solid #FFF;
+	border-radius: 5px;
+	box-shadow: 0 0 1px #000;
+	display: inline-block;
+	height: 106px;
+	margin: 0 5px;
+	position: absolute;
+	right: 0;
+	width: 79px;
+}
+
+.down {
+	background: #B20000 url('https://www.clowerweb.com/cors/blackjack/card.png') center center no-repeat !important;
+}
+
+span.pos-0 {
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+
+span.pos-1 {
+	bottom: 0;
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+	position: absolute;
+	right: 0;
+	transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+}
+
+span.rank {
+	font-size: 18px;
+}
+
+span.suit {
+	font-size: 22px;
+}
+
+.black {
+	color: #000;
+}
+
+.red {
+	color: #F00;
+}
+
+#result {
+	position: absolute;
+	bottom: 0;
+}
+
+#actions {
+	margin: 15px 0 0 0;
+	text-align: center;
+}
+
+input#wager { 
+	margin-left: 5px; 
+	position: relative; 
+	top: 4px;
+}
+
+#wager::placeholder {
+	color: rgba(255, 255, 255, 0.7);
+}
+
+#money, #money:before {
+	border-radius: 5px;
+	bottom: 0;
+	height: 55px;
+	padding: 7px;
+	position: absolute;
+	right: 0;
+	width: 250px;
+}
+
+#money {
+	border: 2px solid #FFC926;
+}
+
+#money:before {
+	background: #333;
+	content: '';
+	opacity: 0.8;
+}
+
+#cash, #bank {
+	color: #FFF;
+	font: 700 18px/20px Helvetica, Arial, Verdana, sans-serif;
+	margin: 12px 0;
+	position: relative;
+	text-shadow: 1px 1px #000;
+	z-index: 1;
+}
+
+#alert {
+	margin: 0 auto;
+	opacity: 0.95;
+	position: relative;
+	text-align: center;
+	top: 34.5%;
+	width: 500px;
+	z-index: 0;
+}
+
+.alert {
+	padding: 12px;
+	border-radius: 4px;
+	margin-bottom: 12px;
+}
+
+.alert-error {
+	background-color: #f8d7da;
+	color: #721c24;
+	border: 1px solid #f5c6cb;
+}
+
+.alert-success {
+	background-color: #d4edda;
+	color: #155724;
+	border: 1px solid #c3e6cb;
+}
+
+.alert-info {
+	background-color: #d1ecf1;
+	color: #0c5460;
+	border: 1px solid #bee5eb;
+}
+
+.hide {
+	display: none;
+}
+
+#myModal {
+	display: none;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.4);
+}
+
+#myModal.fade.in {
+	display: block;
+}
+
+.modal-header {
+	padding: 12px;
+	border-bottom: 1px solid #e9ecef;
+}
+
+.modal-body {
+	padding: 12px;
+}
+
+.modal-footer {
+	padding: 12px;
+	border-top: 1px solid #e9ecef;
+	text-align: right;
+}
+
+.btn {
+	display: inline-block;
+	padding: 8px 16px;
+	margin: 2px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background-color: #6ee7b7;
+	color: #0f1724;
+	transition: all 0.2s;
+}
+
+.btn:hover {
+	background-color: #4cae4c;
+	opacity: 0.9;
+}
+
+.btn:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
+.btn-primary {
+	background-color: #6ee7b7;
+	color: #0f1724;
+}
+
+.btn-primary:hover {
+	background-color: #4cae4c;
+}
+
+.input-small {
+	width: 60px;
+	padding: 4px;
+	font-size: 12px;
+}
+
+/* Popover Bootstrap styles */
+.popover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1070;
+	display: none;
+	max-width: 276px;
+	padding: 1px;
+	margin-top: 10px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	text-align: left;
+	white-space: normal;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popover.top {
+	margin-top: -10px;
+}
+
+.popover-title {
+	padding: 8px 14px;
+	margin: 0;
+	font-size: 14px;
+	background-color: #f7f7f7;
+	border-bottom: 1px solid #ebebeb;
+	border-radius: 5px 5px 0 0;
+}
+
+.popover-content {
+	padding: 9px 14px;
+	color: #333;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+/* Estilos para el Modal de Préstamos */
+#myModal {
+	background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+#myModal .modal-header {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	border-bottom: 2px solid #667eea;
+}
+
+#myModal .modal-header h3 {
+	color: white;
+	margin: 0;
+	font-weight: bold;
+}
+
+#myModal .modal-header .close {
+	color: white;
+	opacity: 0.8;
+}
+
+#myModal .modal-header .close:hover {
+	opacity: 1;
+}
+
+#myModal .modal-body {
+	background-color: #f8f9fa;
+	padding: 20px;
+}
+
+#myModal .modal-body p {
+	color: #333;
+	margin-bottom: 10px;
+}
+
+#myModal input[type="radio"] {
+	margin-right: 8px;
+	cursor: pointer;
+}
+
+#myModal input[type="radio"] + label {
+	cursor: pointer;
+	font-weight: 500;
+	color: #333;
+}
+
+#myModal input[type="radio"]:disabled + label {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+#myModal .modal-footer {
+	background-color: #f8f9fa;
+	border-top: 1px solid #ddd;
+	padding: 15px;
+}
+
+#myModal .btn {
+	padding: 8px 20px;
+	font-weight: bold;
+	border-radius: 4px;
+	cursor: pointer;
+	background-color: #6ee7b7 !important;
+	color: #0f1724 !important;
+	border: none !important;
+	transition: all 0.2s;
+}
+
+#myModal .btn:hover {
+	background-color: #4cae4c !important;
+	opacity: 0.9;
+}
+
+#myModal #cancel {
+	background-color: #6c757d !important;
+	color: white !important;
+	border: none !important;
+}
+
+#myModal #cancel:hover {
+	background-color: #5a6268 !important;
+}
+
+#myModal #newGame {
+	background-color: #6ee7b7 !important;
+	color: #0f1724 !important;
+	border: none !important;
+}
+
+#myModal #newGame:hover {
+	background-color: #4cae4c !important;
+}
+
+/* Remover backdrop del modal */
+.modal-backdrop {
+	display: none !important;
+}
+/* ===== MEJORAS VISUALES AÑADIDAS ===== */
+
+/* Efectos hover en cartas mejorados */
+.card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Animaciones para cartas nuevas */
+@keyframes cardDeal {
+    0% {
+        opacity: 0;
+        transform: rotateY(90deg) translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: rotateY(0) translateX(0);
+    }
+}
+
+.card-0, .card-1, .card-2, .card-3 {
+    animation: cardDeal 0.5s ease-out;
+}
+
+/* Efecto brillo en botones activos */
+.btn:not(:disabled):hover {
+    box-shadow: 0 0 15px rgba(110, 231, 183, 0.5);
+    transform: translateY(-2px);
+}
+
+/* Indicador de turno */
+.turn-indicator {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(110, 231, 183, 0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #6ee7b7;
+    border: 1px solid rgba(110, 231, 183, 0.3);
+    display: none;
+}
+
+.turn-indicator.active {
+    display: block;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Mejoras para el modal de préstamo */
+#myModal .modal-content {
+    background: linear-gradient(135deg, #0f1724 0%, #1a2639 100%);
+    border: 2px solid rgba(110, 231, 183, 0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+#myModal .modal-header {
+    background: linear-gradient(135deg, rgba(110,231,183,0.2) 0%, rgba(110,231,183,0.1) 100%);
+    border-bottom: 2px solid rgba(110,231,183,0.3);
+}
+
+/* Efecto de brillo en el dinero */
+#money {
+    position: relative;
+    overflow: hidden;
+}
+
+#money::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255,255,255,0.1),
+        transparent
+    );
+    transform: rotate(30deg);
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% { transform: translateX(-100%) rotate(30deg); }
+    100% { transform: translateX(100%) rotate(30deg); }
+}
+
+/* Mejoras para el área de apuestas */
+#wager {
+    background: rgba(255,255,255,0.05);
+    border: 2px solid rgba(110,231,183,0.3);
+    transition: all 0.3s;
+}
+
+#wager:focus {
+    border-color: #6ee7b7;
+    box-shadow: 0 0 10px rgba(110,231,183,0.3);
+    background: rgba(255,255,255,0.08);
+}
+
+/* Badge para estadísticas en tiempo real */
+.stats-badge {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(15,23,36,0.9);
+    border: 1px solid rgba(110,231,183,0.3);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #9aa7b2;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.stats-badge div {
+    margin: 3px 0;
+}
+
+.stats-badge .stat-value {
+    color: #6ee7b7;
+    font-weight: bold;
+}
+
+/* Popup de logros */
+.achievement-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, rgba(110,231,183,0.95) 0%, rgba(76,201,240,0.95) 100%);
+    color: #0f1724;
+    padding: 20px 30px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.5s;
+    text-align: center;
+    border: 3px solid rgba(255,255,255,0.3);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+}
+
+.achievement-popup.show {
+    opacity: 1;
+}
+
+.achievement-popup span {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+/* Indicador visual para préstamos */
+.loan-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255,107,107,0.2);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 11px;
+    color: #ff6b6b;
+    border: 1px solid rgba(255,107,107,0.3);
+}
+
+/* Mejoras responsive */
+@media (max-width: 768px) {
+    #wrapper {
+        width: 100% !important;
+    }
+    
+    #game {
+        width: 100% !important;
+        background-size: contain !important;
+        height: auto !important;
+        min-height: 400px;
+    }
+    
+    .card {
+        width: 60px !important;
+        height: 84px !important;
+        margin: 0 3px !important;
+    }
+    
+    #actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: center;
+    }
+    
+    #actions button {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        margin: 2px !important;
+    }
+}
+
+/* Efecto de confeti para victorias grandes */
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: #f00;
+    top: -10px;
+    opacity: 0;
+    z-index: 9998;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Mejorar las alertas */
+.alert {
+    animation: slideIn 0.3s ease-out;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
