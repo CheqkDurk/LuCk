@@ -1,8 +1,8 @@
 body{
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-    color: white;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    background: #000000; /* fondo negro */
+    color: #6ee7b7; /* letras verdes similares a juego */
 }
 
 /* HEADER */
@@ -14,12 +14,10 @@ header{
 
 header h1{
     font-size: 3em;
-    letter-spacing: 4px;
-    background: linear-gradient(90deg,#00ffcc,#ff00cc,#00ffcc);
-    background-size: 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: neonText 6s linear infinite;
+    letter-spacing: 2px;
+    color: #6ee7b7;
+    text-shadow: 0 0 18px rgba(110,231,183,0.18);
+    font-weight:800;
 }
 
 @keyframes neonText{
@@ -101,41 +99,43 @@ header h1{
 }
 
 /* HEADER */
-.site-header { 
-    background-color: #121821 !important;
-    padding: 20px 0;
-    border-bottom: 2px solid #00ff99;
-    box-shadow: 0 0 15px rgba(0, 255, 153, 0.1);
+.site-header {
+    background-color: #0b1220 !important;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(110,231,183,0.08);
+    box-shadow: 0 4px 20px rgba(2,6,23,0.6);
+    max-width: 1200px;
+    margin: 0 auto 20px;
 }
 
-.header-content { 
-    max-width: 1100px; 
-    margin: 0 auto; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 0 20px;
+.header-content {
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
 }
 
-.logo { color: #00ff99; font-size: 24px; font-weight: bold; text-decoration: none; }
+.logo { color: #6ee7b7; font-size: 24px; font-weight: 700; text-decoration: none; }
 
 /* BOTONES ESTILO NEÓN */
 .btn-luck {
-    background-color: #00ff99;
-    color: #000 !important;
-    font-weight: bold;
-    padding: 10px 20px;
+    background-color: #6ee7b7;
+    color: #02121a !important;
+    font-weight: 700;
+    padding: 8px 16px;
     border-radius: 8px;
     text-decoration: none;
-    transition: 0.3s;
+    transition: 0.15s ease;
     border: none;
     display: inline-block;
 }
 
 .btn-luck:hover {
-    background-color: #00cc77;
-    transform: scale(1.05);
-    box-shadow: 0 0 10px #00ff99;
+    background-color: #57caa7;
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 18px rgba(102,231,183,0.12);
 }
 
 /* SECCIÓN HERO */
@@ -198,11 +198,12 @@ header h1{
     .features-row { flex-direction: column; }
 }
 
+/* Consolidated body styles: fondo negre i lletres verdes per coherència amb `juego/styles.css` */
 body{
     margin:0;
-    font-family:Arial;
-    background:#0f2027;
-    color:white;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, Helvetica, sans-serif;
+    background:#000000;
+    color:#6ee7b7;
 }
 
 header{
@@ -303,6 +304,48 @@ header{
     text-decoration:none;
 }
 
+/* Estilos para los controles del carrito (+, -) y el botón vaciar */
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+    color:#ddd;
+}
+.cart-item span{ flex:1; font-size:0.95em; }
+.cart-item button{
+    background:transparent;
+    border:1px solid rgba(110,231,183,0.18);
+    color:#6ee7b7;
+    padding:6px 10px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:700;
+    transition:0.12s ease;
+}
+.cart-item button:hover{
+    background:#6ee7b7;
+    color:#02121a;
+    transform:translateY(-2px);
+}
+.cart-item .cart-dec{
+    border-color: rgba(255,0,102,0.18);
+    color: #ff0066;
+}
+.cart-item .cart-dec:hover{ background:#ff0066; color:#fff; }
+
+#clearCartBtn{
+    background:transparent;
+    border:none;
+    color:#ff0066;
+    font-weight:700;
+    text-decoration:underline;
+    cursor:pointer;
+    padding:6px 0;
+}
+#clearCartBtn:hover{ color:#ff4d88; }
+
 .top-right{
     position:absolute;
     top:20px;
@@ -310,12 +353,12 @@ header{
 }
 
 .login-btn{
-    padding:8px 15px;
-    background:#00ffcc;
-    color:black;
-    border-radius:20px;
+    padding:8px 12px;
+    background:#6ee7b7;
+    color:#02121a;
+    border-radius:8px;
     text-decoration:none;
-    font-weight:bold;
+    font-weight:700;
 }
 
 .cart-header{
@@ -353,3 +396,23 @@ header{
     padding:10px;
     margin:10px 0;
 }
+
+/* Checkout actions: back + pay aligned */
+.checkout-actions{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    margin-top:16px;
+}
+.back-btn{
+    display:inline-block;
+    padding:10px 14px;
+    background:#222;
+    color:#ff0066;
+    border-radius:20px;
+    text-decoration:none;
+    font-weight:700;
+    border:1px solid rgba(255,0,102,0.12);
+}
+.back-btn:hover{ background:#2a2a2a; color:#ff4d88; }

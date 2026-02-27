@@ -11,7 +11,7 @@ if (in_array($usuario, $usuario_correcto) && in_array($password, $password_corre
     $_SESSION['loggedin'] = true;
     $_SESSION['user'] = $usuario;
     
-    header("Location: /"); 
+    header("Location: index.php"); 
     exit;
 } else {
     echo "<h2 style='color:red;text-align:center;'>❌ Usuario o contraseña incorrectos</h2>";
