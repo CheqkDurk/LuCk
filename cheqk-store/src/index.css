@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-cheqk-black text-white font-modern;
+}
+
+.luxury-heading {
+  @apply font-luxury;
+}
+
+.btn-gold {
+  @apply bg-cheqk-gold text-cheqk-black px-6 py-3 rounded-sm font-semibold 
+         hover:bg-yellow-600 transition-all duration-300 ease-in-out;
+}
+
+.btn-outline {
+  @apply border border-cheqk-gold text-cheqk-gold px-6 py-3 rounded-sm 
+         font-semibold hover:bg-cheqk-gold hover:text-cheqk-black 
+         transition-all duration-300 ease-in-out;
+}
+
+.card-luxury {
+  @apply bg-cheqk-charcoal border border-cheqk-dark-gray 
+         hover:border-cheqk-gold transition-all duration-300;
+}
